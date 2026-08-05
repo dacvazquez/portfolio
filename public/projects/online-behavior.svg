@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="Detección de comportamientos en línea">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a0808"/>
+      <stop offset="1" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <pattern id="p1" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#g1)"/>
+  <rect width="800" height="500" fill="url(#p1)"/>
+  <circle cx="600" cy="120" r="180" fill="#dc2626" fill-opacity="0.12"/>
+  <g transform="translate(400 220)" fill="none" stroke="#ef4444" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="0" cy="0" r="60"/>
+    <path d="M45 45 L85 85"/>
+    <path d="M-25 0 h50 M0 -25 v50" stroke-opacity="0.6"/>
+  </g>
+  <text x="400" y="360" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="30" font-weight="700" fill="#fafafa">Análisis con IA</text>
+  <text x="400" y="398" text-anchor="middle" font-family="ui-monospace, monospace" font-size="18" fill="#a3a3a3">detección · clasificación</text>
+</svg>

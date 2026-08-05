@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500" role="img" aria-label="Control de Medios Mobiliarios">
+  <defs>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a0808"/>
+      <stop offset="1" stop-color="#0a0a0a"/>
+    </linearGradient>
+    <pattern id="p3" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+  <rect width="800" height="500" fill="url(#g3)"/>
+  <rect width="800" height="500" fill="url(#p3)"/>
+  <circle cx="620" cy="400" r="180" fill="#dc2626" fill-opacity="0.12"/>
+  <g transform="translate(340 160)" fill="none" stroke="#ef4444" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="0" y="0" width="120" height="80" rx="6"/>
+    <rect x="18" y="24" width="84" height="16" rx="3" stroke-opacity="0.5"/>
+    <rect x="18" y="52" width="60" height="12" rx="3" stroke-opacity="0.5"/>
+  </g>
+  <text x="400" y="360" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="30" font-weight="700" fill="#fafafa">Gestión de Inventario</text>
+  <text x="400" y="398" text-anchor="middle" font-family="ui-monospace, monospace" font-size="18" fill="#a3a3a3">.NET · SQL · CRUD</text>
+</svg>
