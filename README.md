@@ -8,23 +8,23 @@ Construido con un enfoque minimalista premium (tema oscuro rojo/negro), microani
 
 ---
 
-## ✨ Características
+##  Características
 
-- ⚡️ **Next.js 14 (App Router)** + **React 18** + **TypeScript** estricto
-- 🎨 **TailwindCSS** con sistema de tokens (variables CSS) y tema **rojo/negro**
-- 🌗 **Dark mode** (por defecto) + modo claro, sin parpadeo (anti-FOUC)
-- 🎬 **Framer Motion** — reveal on-scroll, microanimaciones, respeta `prefers-reduced-motion`
-- 🧩 Componentes **shadcn/ui**-style (Button, Card, Badge, Tooltip, Input, Textarea)
-- 📊 Barra de progreso de scroll, botón "Back to Top", loader inicial, fondo animado sutil
-- 📬 **Formulario de contacto** funcional con **Resend** (API Route) + validación con **Zod** + honeypot anti-spam
-- 🔍 **SEO completo**: metadata, Open Graph dinámico, JSON-LD (Schema.org), `sitemap.xml`, `robots.txt`
-- ♿️ Accesibilidad: HTML semántico, foco visible, `aria-*`, contraste cuidado
-- 📱 Responsive perfecto (mobile-first)
-- 🗂️ Contenido **100% desacoplado** en `data/` — actualizar el portafolio = editar objetos tipados
+-  **Next.js 14 (App Router)** + **React 18** + **TypeScript** estricto
+-  **TailwindCSS** con sistema de tokens (variables CSS) y tema **rojo/negro**
+-  **Dark mode** (por defecto) + modo claro, sin parpadeo (anti-FOUC)
+-  **Framer Motion** — reveal on-scroll, microanimaciones, respeta `prefers-reduced-motion`
+-  Componentes **shadcn/ui**-style (Button, Card, Badge, Tooltip, Input, Textarea)
+-  Barra de progreso de scroll, botón "Back to Top", loader inicial, fondo animado sutil
+-  **Formulario de contacto** funcional con **Resend** (API Route) + validación con **Zod** + honeypot anti-spam
+-  **SEO completo**: metadata, Open Graph dinámico, JSON-LD (Schema.org), `sitemap.xml`, `robots.txt`
+-  Accesibilidad: HTML semántico, foco visible, `aria-*`, contraste cuidado
+-  Responsive perfecto (mobile-first)
+-  Contenido **100% desacoplado** en `data/` — actualizar el portafolio = editar objetos tipados
 
 ---
 
-## 📁 Estructura del proyecto
+##  Estructura del proyecto
 
 ```
 .
@@ -52,7 +52,7 @@ Construido con un enfoque minimalista premium (tema oscuro rojo/negro), microani
 
 ---
 
-## 🚀 Puesta en marcha
+## Puesta en marcha
 
 ### Requisitos
 
@@ -87,7 +87,7 @@ Abre [http://localhost:3000](http://localhost:3000).
 
 ---
 
-## 🔐 Variables de entorno
+## Variables de entorno
 
 Copia `.env.example` a `.env.local` y completa:
 
@@ -103,7 +103,7 @@ Copia `.env.example` a `.env.local` y completa:
 
 ---
 
-## ✏️ Cómo actualizar el contenido
+## Cómo actualizar el contenido
 
 Todo el contenido está en **`data/`** y tipado en **`types/index.ts`**. No necesitas tocar los componentes:
 
@@ -129,7 +129,7 @@ Busca los comentarios `// TODO:` para ver qué datos conviene completar.
 
 ---
 
-## ☁️ Despliegue en Vercel
+## Despliegue en Vercel
 
 1. Sube el proyecto a un repositorio de GitHub.
 2. Entra en [vercel.com/new](https://vercel.com/new) e importa el repo.
@@ -137,7 +137,7 @@ Busca los comentarios `// TODO:` para ver qué datos conviene completar.
 4. En **Settings → Environment Variables**, añade:
    - `NEXT_PUBLIC_SITE_URL` = `https://tu-dominio.vercel.app`
    - `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, `CONTACT_TO_EMAIL`
-5. **Deploy**. ✅
+5. **Deploy**. 
 
 O desde la CLI:
 
@@ -149,7 +149,7 @@ vercel --prod # producción
 
 ---
 
-## ✅ Checklist de calidad
+## Checklist de calidad
 
 - [x] TypeScript estricto sin errores (`npm run typecheck`)
 - [x] ESLint limpio (`npm run lint`)
@@ -160,6 +160,6 @@ vercel --prod # producción
 
 ---
 
-## 📄 Licencia
+## Licencia
 
 MIT © Daniel Capote Vázquez
