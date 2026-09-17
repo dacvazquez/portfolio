@@ -2,7 +2,7 @@ import { profile } from "@/data/profile";
 
 /** URL pública del sitio (para SEO / OG / sitemap). */
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ??
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
   "http://localhost:3000";
 
 export const SITE_CONFIG = {
