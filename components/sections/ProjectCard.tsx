@@ -25,7 +25,7 @@ export function ProjectCard({ project }: { project: Project }) {
     <motion.article
       whileHover={{ y: -6 }}
       transition={{ type: "spring", stiffness: 300, damping: 24 }}
-      className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/40"
+      className="hover-glow group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-colors hover:border-primary/40"
     >
       {/* Imagen */}
       <div className="relative aspect-[16/10] overflow-hidden border-b border-border bg-secondary/40">
