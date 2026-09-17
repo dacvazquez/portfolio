@@ -13,13 +13,13 @@ export const profile: Profile = {
   ],
   location: "A Curuña, España",
   email: "daniel.capote2002@gmail.com",
-  phone: "+53 5928 9114",
+  phone: "+34 611 877 304",
   avatar: "/foto_perfil.jpeg",
   resume: "/DanielCapoteCV.pdf",
   highlights: [
     { label: "Titulación", value: "Lic. Ciencias de la Computación" },
     { label: "Especialidad", value: "IA & Desarrollo Web" },
     { label: "Proyectos", value: "5+ end-to-end" },
-    { label: "Idiomas", value: "ES nativo · EN B1" },
+    { label: "Idiomas", value: "ES nativo · EN avanzado" },
   ],
 };

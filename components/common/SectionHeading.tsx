@@ -31,7 +31,7 @@ export function SectionHeading({
           <span className="h-px w-8 bg-primary/50" aria-hidden />
         </span>
       )}
-      <h2 className="text-gradient-primary text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
+      <h2 className="text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
         {title}
       </h2>
       {description && (

@@ -111,7 +111,7 @@ export function Hero() {
 
             <motion.h1
               variants={item}
-              className="text-gradient-primary mt-6 text-balance text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl"
+              className="mt-6 text-balance text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl"
             >
               {profile.name}
             </motion.h1>

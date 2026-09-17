@@ -138,11 +138,6 @@
     @apply bg-gradient-to-br from-foreground to-foreground/60 bg-clip-text text-transparent;
   }
 
-  /* Texto con degradado hacia el rojo de marca. */
-  .text-gradient-primary {
-    @apply bg-gradient-to-r from-foreground via-foreground to-primary bg-clip-text text-transparent;
-  }
-
   /* Glow rojo al pasar el cursor, para tarjetas interactivas. */
   .hover-glow {
     transition: box-shadow 300ms ease;
