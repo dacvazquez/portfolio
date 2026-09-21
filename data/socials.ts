@@ -21,6 +21,4 @@ export const socials: SocialLink[] = [
     icon: Mail,
     label: "Enviar un correo a Daniel Capote",
   },
-  // TODO: Añadir Twitter/X u otras redes aquí cuando existan.
-  // { name: "X", href: "https://x.com/usuario", icon: Twitter, label: "Perfil de X" },
 ];

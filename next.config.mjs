@@ -6,7 +6,7 @@ const nextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
   },
-  // Cabeceras de seguridad básicas — buenas prácticas y suman en auditorías.
+  // Cabeceras de seguridad básicas
   async headers() {
     return [
       {

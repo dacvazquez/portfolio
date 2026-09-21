@@ -1,9 +1,6 @@
 import type { Technology } from "@/types";
 
-/**
- * Logos servidos vía Simple Icons CDN (https://cdn.simpleicons.org/{slug}/{color}).
- * El componente TechCard degrada con elegancia (muestra iniciales) si un logo no carga.
- */
+// Los logos vienen de Simple Icons (https://cdn.simpleicons.org/{slug}/{color}).
 export const technologies: Technology[] = [
   { name: "Python", slug: "python", color: "3776AB" },
   { name: "JavaScript", slug: "javascript", color: "F7DF1E" },

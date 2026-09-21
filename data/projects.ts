@@ -45,7 +45,6 @@ export const projects: Project[] = [
       "Registro y trazabilidad del inventario de mobiliario.",
       "Gestión CRUD con persistencia en base de datos relacional.",
     ],
-    // TODO: Añade githubUrl / demoUrl cuando el repositorio esté disponible.
   },
   {
     id: "nursing-staff-control",
@@ -59,11 +58,5 @@ export const projects: Project[] = [
       "Gestión centralizada del personal de enfermería.",
       "Control de asignaciones y disponibilidad de recursos humanos.",
     ],
-    // TODO: Añade githubUrl / demoUrl cuando el repositorio esté disponible.
   },
 ];
-
-// ─────────────────────────────────────────────────────────────
-// Para añadir un proyecto nuevo, copia un objeto de arriba y
-// completa los campos. La tarjeta se renderiza automáticamente.
-// ─────────────────────────────────────────────────────────────

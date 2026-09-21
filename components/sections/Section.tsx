@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-/** Wrapper consistente para todas las secciones (padding + anclaje de scroll). */
+/** Contenedor común de las secciones. */
 export function Section({
   id,
   children,

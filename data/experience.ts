@@ -33,9 +33,7 @@ export const experiences: Experience[] = [
       "Resolución de incidencias y soporte técnico a usuarios.",
       "Aseguramiento de la disponibilidad y estabilidad de los servicios de red.",
     ],
-    achievements: [
-      // TODO: Añade logros medibles si los tienes (p.ej. "Reducción de X% en incidencias").
-    ],
+    achievements: [],
     technologies: ["Administración de redes", "Soporte técnico"],
   },
   {

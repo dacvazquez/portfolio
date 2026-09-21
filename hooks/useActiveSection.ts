@@ -2,10 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-/**
- * Observa las secciones indicadas y devuelve el id de la que está activa
- * en el viewport. Usado para resaltar el enlace actual en la navbar.
- */
+/** Devuelve el id de la sección visible, para resaltar el enlace de la navbar. */
 export function useActiveSection(sectionIds: string[]) {
   const [activeId, setActiveId] = useState<string>(sectionIds[0] ?? "");
 

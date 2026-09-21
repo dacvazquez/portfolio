@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { profile } from "@/data/profile";
 
-/** Loader inicial elegante. Se oculta cuando la página termina de cargar. */
+/** Pantalla de carga inicial. */
 export function Loader() {
   const [loading, setLoading] = useState(true);
 

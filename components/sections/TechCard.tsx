@@ -25,7 +25,7 @@ export function TechCard({ tech, index }: { tech: Technology; index: number }) {
           className="hover-glow flex aspect-square cursor-default items-center justify-center rounded-xl border border-border bg-card p-4 transition-colors hover:border-primary/40 hover:bg-card/60"
         >
           {failed ? (
-            // Fallback elegante: iniciales de la tecnología.
+            // Si el logo no carga, se muestran las iniciales.
             <span className="text-sm font-bold text-muted-foreground">
               {tech.name.slice(0, 2)}
             </span>

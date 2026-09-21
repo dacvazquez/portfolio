@@ -26,10 +26,7 @@ const directions: Record<Direction, { x: number; y: number }> = {
   none: { x: 0, y: 0 },
 };
 
-/**
- * Anima su contenido al entrar en el viewport. Respeta
- * `prefers-reduced-motion` automáticamente vía Framer Motion.
- */
+/** Anima el contenido al entrar en pantalla. */
 export function Reveal({
   children,
   delay = 0,

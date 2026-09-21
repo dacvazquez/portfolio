@@ -1,8 +1,4 @@
-/**
- * Fondo animado muy sutil: un grid tenue + dos "auroras" rojas
- * que se desplazan lentamente. Es puramente decorativo (aria-hidden)
- * y se detiene con `prefers-reduced-motion`.
- */
+/** Fondo decorativo: rejilla y dos resplandores rojos que se mueven despacio. */
 export function AnimatedBackground() {
   return (
     <div
