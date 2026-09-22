@@ -19,4 +19,7 @@ export const technologies: Technology[] = [
   { name: "Postman", slug: "postman", color: "FF6C37" },
   { name: "Git", slug: "git", color: "F05032" },
   { name: "GitHub", slug: "github", color: "FFFFFF" },
+  { name: "Linux", slug: "linux", color: "FCC624" },
+  { name: "Docker", slug: "docker", color: "2496ED" },
+  { name: "GitHub Actions", slug: "githubactions", color: "2088FF" },
 ];
