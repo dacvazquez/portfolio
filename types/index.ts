@@ -1,5 +1,7 @@
 import type { LucideIcon } from "lucide-react";
 
+export type Locale = "en" | "es";
+
 /** Perfil / información personal principal. */
 export interface Profile {
   name: string;
@@ -44,7 +46,7 @@ export interface Experience {
   technologies: string[];
 }
 
-export type ProjectDifficulty = "Básico" | "Intermedio" | "Avanzado";
+export type ProjectDifficulty = "basic" | "intermediate" | "advanced";
 
 /** Proyecto del portafolio. */
 export interface Project {

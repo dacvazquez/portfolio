@@ -4,10 +4,12 @@ import { Moon, Sun } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTheme } from "./ThemeProvider";
 import { useMounted } from "@/hooks/useMounted";
+import { useLocale } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 
 export function ThemeToggle({ className }: { className?: string }) {
   const { theme, toggleTheme } = useTheme();
+  const { t } = useLocale();
   const mounted = useMounted();
 
   return (
@@ -15,7 +17,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       type="button"
       onClick={toggleTheme}
       aria-label={
-        theme === "dark" ? "Activar modo claro" : "Activar modo oscuro"
+        theme === "dark" ? t.theme.toEnableLight : t.theme.toEnableDark
       }
       className={cn(
         "relative inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",

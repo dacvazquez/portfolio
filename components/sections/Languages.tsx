@@ -6,15 +6,19 @@ import { Section } from "./Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { Card } from "@/components/ui/card";
-import { languages } from "@/data/languages";
+import { getLanguages } from "@/data/languages";
+import { useLocale } from "@/lib/locale";
 
 export function Languages() {
+  const { locale, t } = useLocale();
+  const languages = getLanguages(locale);
+
   return (
     <Section id="languages" className="pt-0 sm:pt-0">
       <SectionHeading
-        eyebrow="07"
-        title="Idiomas"
-        description="Idiomas que hablo y mi nivel en cada uno."
+        eyebrow={t.sections.languages.eyebrow}
+        title={t.sections.languages.title}
+        description={t.sections.languages.description}
       />
 
       <div className="mt-12 grid max-w-2xl gap-5 sm:grid-cols-2">

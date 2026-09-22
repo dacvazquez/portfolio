@@ -3,18 +3,22 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { navItems } from "@/data/navigation";
-import { profile } from "@/data/profile";
+import { getNavItems } from "@/data/navigation";
+import { getProfile } from "@/data/profile";
 import { useActiveSection } from "@/hooks/useActiveSection";
+import { useLocale } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
-
-const sectionIds = navItems.map((item) => item.href.replace("#", ""));
+import { LocaleToggle } from "@/components/theme/LocaleToggle";
 
 export function Navbar() {
+  const { locale, t } = useLocale();
+  const navItems = getNavItems(locale);
+  const profile = getProfile(locale);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const sectionIds = navItems.map((item) => item.href.replace("#", ""));
   const activeId = useActiveSection(sectionIds);
 
   useEffect(() => {
@@ -48,12 +52,12 @@ export function Navbar() {
     >
       <nav
         className="container flex h-16 items-center justify-between"
-        aria-label="Navegación principal"
+        aria-label={t.nav.mainNav}
       >
         <a
           href="#hero"
           className="group inline-flex items-center gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-          aria-label="Ir al inicio"
+          aria-label={t.nav.goHome}
         >
           <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-primary/40 bg-primary/10 font-mono text-sm font-bold text-primary transition-colors group-hover:bg-primary/20">
             {initials}
@@ -97,13 +101,14 @@ export function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
+          <LocaleToggle />
           <ThemeToggle />
           <Button
             asChild
             size="sm"
             className="hidden sm:inline-flex"
           >
-            <a href="#contact">Contáctame</a>
+            <a href="#contact">{t.nav.contactMe}</a>
           </Button>
 
           {/* Botón menú móvil */}
@@ -113,7 +118,7 @@ export function Navbar() {
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-controls="mobile-menu"
-            aria-label={open ? "Cerrar menú" : "Abrir menú"}
+            aria-label={open ? t.nav.closeMenu : t.nav.openMenu}
           >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -146,7 +151,7 @@ export function Navbar() {
               <li className="pt-2">
                 <Button asChild className="w-full">
                   <a href="#contact" onClick={() => setOpen(false)}>
-                    Contáctame
+                    {t.nav.contactMe}
                   </a>
                 </Button>
               </li>

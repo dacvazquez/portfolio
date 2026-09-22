@@ -1,26 +1,28 @@
-import { profile } from "@/data/profile";
+import { getProfile } from "@/data/profile";
 
 /** URL pública del sitio (para SEO / OG / sitemap). */
 export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
   "http://localhost:3000";
 
+const profile = getProfile("en");
+
 export const SITE_CONFIG = {
   name: profile.name,
   title: `${profile.name} — ${profile.role}`,
   description: profile.heroDescription,
   url: SITE_URL,
-  locale: "es_ES",
+  locale: "en_US",
   keywords: [
     "Daniel Capote Vázquez",
-    "Desarrollador de Software",
-    "Inteligencia Artificial",
+    "Software Developer",
+    "Artificial Intelligence",
     "Machine Learning",
-    "Desarrollo Web",
+    "Web Development",
     "React",
     "Python",
     "Next.js",
-    "Portafolio",
+    "Portfolio",
     "Cuba",
   ],
 } as const;

@@ -3,7 +3,10 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SITE_CONFIG, SITE_URL } from "@/lib/constants";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
-import { profile } from "@/data/profile";
+import { LocaleProvider } from "@/lib/locale";
+import { getProfile } from "@/data/profile";
+
+const profile = getProfile("en");
 
 const inter = Inter({
   subsets: ["latin"],
@@ -91,12 +94,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className="dark" style={{ colorScheme: "dark" }} suppressHydrationWarning>
+    <html lang="en" className="dark" style={{ colorScheme: "dark" }} suppressHydrationWarning>
       <head>
-        {/* Anti-FOUC: aplica el tema guardado antes de pintar. */}
+        {/* Anti-FOUC: aplica el tema y el idioma guardados antes de pintar. */}
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('portfolio-theme');var d=t?t==='dark':true;var r=document.documentElement;r.classList.toggle('dark',d);r.style.colorScheme=d?'dark':'light';}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem('portfolio-theme');var d=t?t==='dark':true;var r=document.documentElement;r.classList.toggle('dark',d);r.style.colorScheme=d?'dark':'light';var l=localStorage.getItem('portfolio-locale');if(l==='en'||l==='es'){r.lang=l;}}catch(e){}})();`,
           }}
         />
         <script
@@ -105,7 +108,9 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans`}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <LocaleProvider>
+          <ThemeProvider>{children}</ThemeProvider>
+        </LocaleProvider>
       </body>
     </html>
   );

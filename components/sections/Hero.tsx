@@ -4,14 +4,16 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Download, MapPin } from "lucide-react";
-import { profile } from "@/data/profile";
-import { socials } from "@/data/socials";
+import { getProfile } from "@/data/profile";
+import { getSocials } from "@/data/socials";
+import { useLocale } from "@/lib/locale";
 import { Button } from "@/components/ui/button";
+import type { Profile } from "@/types";
 
 const TERMINAL_LINES = ["ia_engineer.py", "full_stack_dev.ts", "problem_solver.exe"];
 
 /** Panel tipo terminal con efecto de escritura en loop entre roles/stack. */
-function TerminalPanel() {
+function TerminalPanel({ profile }: { profile: Profile }) {
   const prefersReducedMotion = useReducedMotion();
   const [lineIndex, setLineIndex] = useState(0);
   const [text, setText] = useState(
@@ -52,7 +54,7 @@ function TerminalPanel() {
         <div className="absolute -right-4 -top-4 h-14 w-14 overflow-hidden rounded-full border-2 border-background shadow-lg">
           <Image
             src={profile.avatar}
-            alt={`Foto de ${profile.name}`}
+            alt={profile.name}
             fill
             priority
             sizes="3.5rem"
@@ -90,6 +92,10 @@ const item = {
 };
 
 export function Hero() {
+  const { locale, t } = useLocale();
+  const profile = getProfile(locale);
+  const socials = getSocials(locale);
+
   return (
     <section
       id="hero"
@@ -105,7 +111,7 @@ export function Hero() {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-primary" />
                 </span>
-                Disponible para nuevas oportunidades
+                {t.hero.available}
               </span>
             </motion.div>
 
@@ -144,12 +150,12 @@ export function Hero() {
             >
               <Button asChild size="lg">
                 <a href="#contact">
-                  Contáctame <ArrowRight className="h-4 w-4" />
+                  {t.hero.contactCta} <ArrowRight className="h-4 w-4" />
                 </a>
               </Button>
               <Button asChild size="lg" variant="outline">
                 <a href={profile.resume} download>
-                  <Download className="h-4 w-4" /> Descargar CV
+                  <Download className="h-4 w-4" /> {t.hero.downloadCv}
                 </a>
               </Button>
             </motion.div>
@@ -179,7 +185,7 @@ export function Hero() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
-            <TerminalPanel />
+            <TerminalPanel profile={profile} />
           </motion.div>
         </div>
       </div>

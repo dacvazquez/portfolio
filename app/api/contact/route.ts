@@ -1,23 +1,42 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { contactFormSchema } from "@/lib/validations";
+import { getContactFormSchema } from "@/lib/validations";
+import type { Locale } from "@/types";
 
 export const runtime = "nodejs";
+
+const messages: Record<Locale, { invalidBody: string; invalidForm: string; noEmailService: string; sendFailed: string; internalError: string }> = {
+  en: {
+    invalidBody: "Invalid request body.",
+    invalidForm: "Invalid form data.",
+    noEmailService: "The email service isn't configured yet. Set RESEND_API_KEY and CONTACT_TO_EMAIL.",
+    sendFailed: "Couldn't send the message. Please try again later.",
+    internalError: "Internal server error.",
+  },
+  es: {
+    invalidBody: "Cuerpo inválido.",
+    invalidForm: "Datos del formulario inválidos.",
+    noEmailService: "El servicio de correo no está configurado todavía. Configura RESEND_API_KEY y CONTACT_TO_EMAIL.",
+    sendFailed: "No se pudo enviar el mensaje. Intenta más tarde.",
+    internalError: "Error interno del servidor.",
+  },
+};
 
 export async function POST(request: Request) {
   let body: unknown;
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json({ error: "Cuerpo inválido." }, { status: 400 });
+    return NextResponse.json({ error: messages.en.invalidBody }, { status: 400 });
   }
 
-  const parsed = contactFormSchema.safeParse(body);
+  const rawLocale = (body as { locale?: unknown })?.locale;
+  const locale: Locale = rawLocale === "es" ? "es" : "en";
+  const m = messages[locale];
+
+  const parsed = getContactFormSchema(locale).safeParse(body);
   if (!parsed.success) {
-    return NextResponse.json(
-      { error: "Datos del formulario inválidos." },
-      { status: 422 }
-    );
+    return NextResponse.json({ error: m.invalidForm }, { status: 422 });
   }
 
   const { name, email, message, website } = parsed.data;
@@ -38,13 +57,7 @@ export async function POST(request: Request) {
       "[contact] RESEND_API_KEY o CONTACT_TO_EMAIL no configurados. Mensaje recibido:",
       { name, email, message }
     );
-    return NextResponse.json(
-      {
-        error:
-          "El servicio de correo no está configurado todavía. Configura RESEND_API_KEY y CONTACT_TO_EMAIL.",
-      },
-      { status: 503 }
-    );
+    return NextResponse.json({ error: m.noEmailService }, { status: 503 });
   }
 
   try {
@@ -68,19 +81,13 @@ export async function POST(request: Request) {
 
     if (error) {
       console.error("[contact] Resend error:", error);
-      return NextResponse.json(
-        { error: "No se pudo enviar el mensaje. Intenta más tarde." },
-        { status: 502 }
-      );
+      return NextResponse.json({ error: m.sendFailed }, { status: 502 });
     }
 
     return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("[contact] Error inesperado:", error);
-    return NextResponse.json(
-      { error: "Error interno del servidor." },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: m.internalError }, { status: 500 });
   }
 }
 

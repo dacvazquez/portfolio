@@ -3,9 +3,11 @@
 import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useLocale } from "@/lib/locale";
 
 /** Botón flotante "Volver arriba" que aparece tras hacer scroll. */
 export function BackToTop() {
+  const { t } = useLocale();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -24,7 +26,7 @@ export function BackToTop() {
         <motion.button
           type="button"
           onClick={scrollToTop}
-          aria-label="Volver arriba"
+          aria-label={t.backToTop}
           initial={{ opacity: 0, scale: 0.6, y: 12 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.6, y: 12 }}

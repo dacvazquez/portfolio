@@ -1,18 +1,25 @@
+"use client";
+
 import { GraduationCap, Award, Sparkles } from "lucide-react";
 import { Section } from "./Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { Card } from "@/components/ui/card";
-import { education } from "@/data/education";
-import { certifications } from "@/data/certifications";
+import { getEducation } from "@/data/education";
+import { getCertifications } from "@/data/certifications";
+import { useLocale } from "@/lib/locale";
 
 export function Education() {
+  const { locale, t } = useLocale();
+  const education = getEducation(locale);
+  const certifications = getCertifications(locale);
+
   return (
     <Section id="education">
       <SectionHeading
-        eyebrow="06"
-        title="Educación"
-        description="Mi formación académica y reconocimientos."
+        eyebrow={t.sections.education.eyebrow}
+        title={t.sections.education.title}
+        description={t.sections.education.description}
       />
 
       <div className="mt-12 grid gap-6 lg:grid-cols-2">
@@ -65,7 +72,7 @@ export function Education() {
           <div className="space-y-6">
             <h3 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground/80">
               <Award className="h-4 w-4 text-primary" />
-              Certificaciones
+              {t.education.certifications}
             </h3>
             {certifications.map((cert, index) => (
               <Reveal key={cert.id} delay={index * 0.08}>
@@ -83,7 +90,7 @@ export function Education() {
                       rel="noopener noreferrer"
                       className="text-xs font-medium text-primary hover:underline"
                     >
-                      Ver
+                      {t.education.view}
                     </a>
                   )}
                 </Card>

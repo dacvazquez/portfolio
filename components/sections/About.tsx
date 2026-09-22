@@ -1,15 +1,21 @@
+"use client";
+
 import { Section } from "./Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
-import { profile } from "@/data/profile";
+import { getProfile } from "@/data/profile";
+import { useLocale } from "@/lib/locale";
 
 export function About() {
+  const { locale, t } = useLocale();
+  const profile = getProfile(locale);
+
   return (
     <Section id="about">
       <SectionHeading
-        eyebrow="01"
-        title="Sobre mí"
-        description="Un poco sobre quién soy, cómo trabajo y qué me motiva."
+        eyebrow={t.sections.about.eyebrow}
+        title={t.sections.about.title}
+        description={t.sections.about.description}
       />
 
       <div className="mt-12 grid gap-12 lg:grid-cols-[1.4fr_1fr]">

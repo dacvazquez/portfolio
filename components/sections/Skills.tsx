@@ -1,16 +1,22 @@
+"use client";
+
 import { Section } from "./Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { Card } from "@/components/ui/card";
-import { skillCategories } from "@/data/skills";
+import { getSkillCategories } from "@/data/skills";
+import { useLocale } from "@/lib/locale";
 
 export function Skills() {
+  const { locale, t } = useLocale();
+  const skillCategories = getSkillCategories(locale);
+
   return (
     <Section id="skills">
       <SectionHeading
-        eyebrow="04"
-        title="Habilidades"
-        description="Tecnologías y herramientas con las que trabajo, agrupadas por área."
+        eyebrow={t.sections.skills.eyebrow}
+        title={t.sections.skills.title}
+        description={t.sections.skills.description}
       />
 
       <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

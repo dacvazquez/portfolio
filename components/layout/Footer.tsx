@@ -1,9 +1,16 @@
-import { profile } from "@/data/profile";
-import { socials } from "@/data/socials";
-import { navItems } from "@/data/navigation";
+"use client";
+
+import { getProfile } from "@/data/profile";
+import { getSocials } from "@/data/socials";
+import { getNavItems } from "@/data/navigation";
+import { useLocale } from "@/lib/locale";
 
 export function Footer() {
-  const year = 2026; // TODO: si prefieres año dinámico, usa new Date().getFullYear() en un client component.
+  const { locale, t } = useLocale();
+  const profile = getProfile(locale);
+  const socials = getSocials(locale);
+  const navItems = getNavItems(locale);
+  const year = 2026; // TODO: si prefieres año dinámico, usa new Date().getFullYear().
 
   return (
     <footer className="border-t border-border/70">
@@ -21,9 +28,9 @@ export function Footer() {
             </p>
           </div>
 
-          <nav aria-label="Enlaces del pie" className="flex flex-col gap-2">
+          <nav aria-label={t.footer.navigation} className="flex flex-col gap-2">
             <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/70">
-              Navegación
+              {t.footer.navigation}
             </span>
             {navItems.slice(0, 5).map((item) => (
               <a
@@ -38,7 +45,7 @@ export function Footer() {
 
           <div className="flex flex-col gap-3">
             <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground/70">
-              Sígueme
+              {t.footer.followMe}
             </span>
             <div className="flex gap-2">
               {socials.map((social) => {
@@ -62,12 +69,13 @@ export function Footer() {
 
         <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-border/60 pt-6 text-xs text-muted-foreground sm:flex-row">
           <p>
-            © {year} {profile.name}. Todos los derechos reservados.
+            © {year} {profile.name}. {t.footer.rights}
           </p>
           <p>
-            Construido con{" "}
+            {t.footer.builtWith}{" "}
             <span className="text-foreground">Next.js</span>,{" "}
-            <span className="text-foreground">TypeScript</span> y{" "}
+            <span className="text-foreground">TypeScript</span>{" "}
+            {locale === "en" ? "and" : "y"}{" "}
             <span className="text-foreground">Tailwind CSS</span>.
           </p>
         </div>

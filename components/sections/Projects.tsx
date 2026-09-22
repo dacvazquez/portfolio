@@ -1,16 +1,22 @@
+"use client";
+
 import { Section } from "./Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { ProjectCard } from "./ProjectCard";
-import { projects } from "@/data/projects";
+import { getProjects } from "@/data/projects";
+import { useLocale } from "@/lib/locale";
 
 export function Projects() {
+  const { locale, t } = useLocale();
+  const projects = getProjects(locale);
+
   return (
     <Section id="projects">
       <SectionHeading
-        eyebrow="03"
-        title="Proyectos"
-        description="Una selección de proyectos que combinan inteligencia artificial, desarrollo web y sistemas de gestión."
+        eyebrow={t.sections.projects.eyebrow}
+        title={t.sections.projects.title}
+        description={t.sections.projects.description}
       />
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

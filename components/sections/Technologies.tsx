@@ -5,14 +5,17 @@ import { SectionHeading } from "@/components/common/SectionHeading";
 import { TechCard } from "./TechCard";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { technologies } from "@/data/technologies";
+import { useLocale } from "@/lib/locale";
 
 export function Technologies() {
+  const { t } = useLocale();
+
   return (
     <Section id="technologies" className="pt-0 sm:pt-0">
       <SectionHeading
-        eyebrow="05"
-        title="Stack tecnológico"
-        description="Pasa el cursor sobre cada logo para ver la tecnología."
+        eyebrow={t.sections.technologies.eyebrow}
+        title={t.sections.technologies.title}
+        description={t.sections.technologies.description}
         align="center"
       />
 

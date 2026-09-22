@@ -1,4 +1,8 @@
-import type { Certification } from "@/types";
+import type { Certification, Locale } from "@/types";
 
-// Todavía no tengo certificaciones. La sección solo se muestra si esta lista no está vacía.
-export const certifications: Certification[] = [];
+// No certifications yet. The section only shows up if this list isn't empty.
+const content: Record<Locale, Certification[]> = { en: [], es: [] };
+
+export function getCertifications(locale: Locale): Certification[] {
+  return content[locale];
+}

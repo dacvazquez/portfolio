@@ -6,21 +6,24 @@ import { Github, ExternalLink, Lightbulb, Signal } from "lucide-react";
 import type { Project, ProjectDifficulty } from "@/types";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useLocale } from "@/lib/locale";
 import { cn } from "@/lib/utils";
 
 const difficultyStyles: Record<ProjectDifficulty, string> = {
-  Básico: "text-emerald-400",
-  Intermedio: "text-amber-400",
-  Avanzado: "text-primary",
+  basic: "text-emerald-400",
+  intermediate: "text-amber-400",
+  advanced: "text-primary",
 };
 
 const difficultyBars: Record<ProjectDifficulty, number> = {
-  Básico: 1,
-  Intermedio: 2,
-  Avanzado: 3,
+  basic: 1,
+  intermediate: 2,
+  advanced: 3,
 };
 
 export function ProjectCard({ project }: { project: Project }) {
+  const { t } = useLocale();
+
   return (
     <motion.article
       whileHover={{ y: -6 }}
@@ -31,7 +34,7 @@ export function ProjectCard({ project }: { project: Project }) {
       <div className="relative aspect-[16/10] overflow-hidden border-b border-border bg-secondary/40">
         <Image
           src={project.image}
-          alt={`Vista previa de ${project.title}`}
+          alt={project.title}
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
@@ -39,7 +42,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <div className="absolute inset-0 bg-gradient-to-t from-card/80 via-transparent to-transparent" />
         {project.featured && (
           <span className="absolute left-3 top-3">
-            <Badge>Destacado</Badge>
+            <Badge>{t.project.featured}</Badge>
           </span>
         )}
       </div>
@@ -54,7 +57,7 @@ export function ProjectCard({ project }: { project: Project }) {
               "flex shrink-0 items-center gap-1 text-xs font-medium",
               difficultyStyles[project.difficulty]
             )}
-            title={`Dificultad: ${project.difficulty}`}
+            title={`${t.project.difficultyLabel}: ${t.project.difficulty[project.difficulty]}`}
           >
             <span className="flex items-end gap-0.5" aria-hidden>
               {[1, 2, 3].map((bar) => (
@@ -71,7 +74,7 @@ export function ProjectCard({ project }: { project: Project }) {
               ))}
             </span>
             <Signal className="sr-only" />
-            {project.difficulty}
+            {t.project.difficulty[project.difficulty]}
           </span>
         </div>
 
@@ -84,7 +87,7 @@ export function ProjectCard({ project }: { project: Project }) {
           <div className="mt-4">
             <p className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground/70">
               <Lightbulb className="h-3.5 w-3.5 text-primary" />
-              Problemas resueltos
+              {t.project.problemsSolved}
             </p>
             <ul className="mt-2 space-y-1.5">
               {project.problemsSolved.map((problem, i) => (
@@ -118,7 +121,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github className="h-4 w-4" /> Código
+                <Github className="h-4 w-4" /> {t.project.code}
               </a>
             </Button>
           )}
@@ -129,13 +132,13 @@ export function ProjectCard({ project }: { project: Project }) {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <ExternalLink className="h-4 w-4" /> Demo
+                <ExternalLink className="h-4 w-4" /> {t.project.demo}
               </a>
             </Button>
           )}
           {!project.githubUrl && !project.demoUrl && (
             <span className="text-xs italic text-muted-foreground/60">
-              Repositorio privado
+              {t.project.privateRepo}
             </span>
           )}
         </div>

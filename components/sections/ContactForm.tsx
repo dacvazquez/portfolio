@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Loader2, Send, CheckCircle2, AlertCircle } from "lucide-react";
-import { contactFormSchema } from "@/lib/validations";
+import { getContactFormSchema } from "@/lib/validations";
+import { useLocale } from "@/lib/locale";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -12,6 +13,7 @@ type Status = "idle" | "loading" | "success" | "error";
 type FieldErrors = Partial<Record<"name" | "email" | "message", string>>;
 
 export function ContactForm() {
+  const { locale, t } = useLocale();
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<FieldErrors>({});
   const [serverMessage, setServerMessage] = useState<string>("");
@@ -32,7 +34,7 @@ export function ContactForm() {
     };
 
     // Validación en cliente.
-    const parsed = contactFormSchema.safeParse(payload);
+    const parsed = getContactFormSchema(locale).safeParse(payload);
     if (!parsed.success) {
       const fieldErrors: FieldErrors = {};
       for (const issue of parsed.error.issues) {
@@ -48,21 +50,19 @@ export function ContactForm() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(parsed.data),
+        body: JSON.stringify({ ...parsed.data, locale }),
       });
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.error ?? "No se pudo enviar el mensaje.");
+        throw new Error(data.error ?? t.contact.errorFallback);
       }
 
       setStatus("success");
       form.reset();
     } catch (error) {
       setStatus("error");
-      setServerMessage(
-        error instanceof Error ? error.message : "Ocurrió un error inesperado."
-      );
+      setServerMessage(error instanceof Error ? error.message : t.contact.errorFallback);
     }
   }
 
@@ -70,19 +70,19 @@ export function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-5" noValidate>
       {/* Honeypot anti-spam (oculto para usuarios) */}
       <div className="hidden" aria-hidden>
-        <label htmlFor="website">No rellenar</label>
+        <label htmlFor="website">{t.contact.doNotFill}</label>
         <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="space-y-2">
           <label htmlFor="name" className="text-sm font-medium">
-            Nombre
+            {t.contact.name}
           </label>
           <Input
             id="name"
             name="name"
-            placeholder="Tu nombre"
+            placeholder={t.contact.namePlaceholder}
             autoComplete="name"
             aria-invalid={!!errors.name}
             aria-describedby={errors.name ? "name-error" : undefined}
@@ -96,13 +96,13 @@ export function ContactForm() {
 
         <div className="space-y-2">
           <label htmlFor="email" className="text-sm font-medium">
-            Correo electrónico
+            {t.contact.emailField}
           </label>
           <Input
             id="email"
             name="email"
             type="email"
-            placeholder="tu@email.com"
+            placeholder="you@email.com"
             autoComplete="email"
             aria-invalid={!!errors.email}
             aria-describedby={errors.email ? "email-error" : undefined}
@@ -117,12 +117,12 @@ export function ContactForm() {
 
       <div className="space-y-2">
         <label htmlFor="message" className="text-sm font-medium">
-          Mensaje
+          {t.contact.message}
         </label>
         <Textarea
           id="message"
           name="message"
-          placeholder="Cuéntame sobre tu proyecto u oportunidad…"
+          placeholder={t.contact.messagePlaceholder}
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? "message-error" : undefined}
         />
@@ -142,11 +142,11 @@ export function ContactForm() {
         >
           {status === "loading" ? (
             <>
-              <Loader2 className="h-4 w-4 animate-spin" /> Enviando…
+              <Loader2 className="h-4 w-4 animate-spin" /> {t.contact.sending}
             </>
           ) : (
             <>
-              <Send className="h-4 w-4" /> Enviar mensaje
+              <Send className="h-4 w-4" /> {t.contact.send}
             </>
           )}
         </Button>
@@ -160,8 +160,7 @@ export function ContactForm() {
               exit={{ opacity: 0 }}
               className="flex items-center gap-1.5 text-sm text-emerald-400"
             >
-              <CheckCircle2 className="h-4 w-4" /> ¡Mensaje enviado! Te
-              responderé pronto.
+              <CheckCircle2 className="h-4 w-4" /> {t.contact.success}
             </motion.p>
           )}
           {status === "error" && (
@@ -173,7 +172,7 @@ export function ContactForm() {
               className="flex items-center gap-1.5 text-sm text-destructive"
             >
               <AlertCircle className="h-4 w-4" />{" "}
-              {serverMessage || "No se pudo enviar. Intenta de nuevo."}
+              {serverMessage || t.contact.errorFallback}
             </motion.p>
           )}
         </AnimatePresence>

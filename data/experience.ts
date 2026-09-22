@@ -1,58 +1,120 @@
-import type { Experience } from "@/types";
+import type { Experience, Locale } from "@/types";
 
-export const experiences: Experience[] = [
-  {
-    id: "thesis-uclv",
-    company: "Universidad Central «Marta Abreu» de Las Villas",
-    role: "Trabajo de Diploma — Investigación en IA",
-    location: "Villa Clara, Cuba",
-    period: "2024 — Jul 2025",
-    description:
-      "Tesis de grado centrada en la detección y clasificación de comportamientos transgresivos en línea mediante modelos de inteligencia artificial.",
-    responsibilities: [
-      "Diseño y entrenamiento de modelos de aprendizaje automático y profundo para el análisis de contenido en sitios web.",
-      "Preprocesamiento de datos, extracción de características y evaluación de métricas del modelo.",
-      "Desarrollo de la aplicación que integra los modelos para detectar y clasificar comportamientos en tiempo real.",
-    ],
-    achievements: [
-      "Tesis expuesta y aprobada en julio de 2025.",
-      "Aplicación funcional end-to-end que combina IA y una interfaz de análisis.",
-    ],
-    technologies: ["Python", "Scikit-learn", "Deep Learning", "Streamlit"],
-  },
-  {
-    id: "cupet-networks",
-    company: "Comercializadora de CUPET",
-    role: "Técnico en Administración de Redes",
-    location: "Villa Clara, Cuba",
-    period: "Oct 2025 — May 2026",
-    description:
-      "Administración y mantenimiento de la infraestructura de red de la comercializadora.",
-    responsibilities: [
-      "Administración de redes: configuración, monitoreo y mantenimiento de la conectividad.",
-      "Resolución de incidencias y soporte técnico a usuarios.",
-      "Aseguramiento de la disponibilidad y estabilidad de los servicios de red.",
-    ],
-    achievements: [],
-    technologies: ["Administración de redes", "Soporte técnico"],
-  },
-  {
-    id: "practices-uclv",
-    company: "Universidad Central «Marta Abreu» de Las Villas",
-    role: "Proyectos de Práctica — Desarrollo de Software",
-    location: "Villa Clara, Cuba",
-    period: "2021 — 2025 (durante la carrera)",
-    description:
-      "Varios proyectos prácticos culminados en el desarrollo de software funcional, abarcando IA aplicada a la salud y sistemas de gestión.",
-    responsibilities: [
-      "«Diagnóstico de Esclerosis Múltiple»: aplicación de apoyo al diagnóstico basada en modelos de IA.",
-      "«Control de medios mobiliarios»: sistema de gestión de inventario de mobiliario.",
-      "«Control de material humano en enfermería»: sistema de gestión de personal de enfermería.",
-    ],
-    achievements: [
-      "Participación y mención en el Fórum Científico Universitario «52 Jornada Científico Estudiantil Universitaria».",
-      "Entrega de múltiples sistemas funcionales a lo largo de la carrera.",
-    ],
-    technologies: ["Python", "C#", ".NET", "React", "SQL", "PostgreSQL"],
-  },
-];
+const content: Record<Locale, Experience[]> = {
+  en: [
+    {
+      id: "thesis-uclv",
+      company: "Universidad Central «Marta Abreu» de Las Villas",
+      role: "Undergraduate Thesis — AI Research",
+      location: "Villa Clara, Cuba",
+      period: "2024 — Jul 2025",
+      description:
+        "Undergraduate thesis focused on detecting and classifying transgressive online behavior using artificial intelligence models.",
+      responsibilities: [
+        "Designed and trained machine learning and deep learning models to analyze content on websites.",
+        "Data preprocessing, feature extraction and model performance evaluation.",
+        "Built the application that integrates the models to detect and classify behavior in real time.",
+      ],
+      achievements: [
+        "Thesis presented and approved in July 2025.",
+        "End-to-end functional application combining AI and an analysis interface.",
+      ],
+      technologies: ["Python", "Scikit-learn", "Deep Learning", "Streamlit"],
+    },
+    {
+      id: "cupet-networks",
+      company: "Comercializadora de CUPET",
+      role: "Network Administration Technician",
+      location: "Villa Clara, Cuba",
+      period: "Oct 2025 — May 2026",
+      description:
+        "Administration and maintenance of the company's network infrastructure.",
+      responsibilities: [
+        "Network administration: configuration, monitoring and maintenance of connectivity.",
+        "Troubleshooting and technical support for users.",
+        "Ensured availability and stability of network services.",
+      ],
+      achievements: [],
+      technologies: ["Network administration", "Technical support"],
+    },
+    {
+      id: "practices-uclv",
+      company: "Universidad Central «Marta Abreu» de Las Villas",
+      role: "Internship Projects — Software Development",
+      location: "Villa Clara, Cuba",
+      period: "2021 — 2025 (during the degree)",
+      description:
+        "Several practical projects completed as functional software, spanning AI applied to healthcare and management systems.",
+      responsibilities: [
+        "«Multiple Sclerosis Diagnosis»: AI-based diagnosis support application.",
+        "«Furniture Asset Management»: furniture inventory management system.",
+        "«Nursing Staff Management»: nursing staff management system.",
+      ],
+      achievements: [
+        "Participation and mention at the University Student Scientific Forum «52nd University Student Scientific Conference».",
+        "Delivered multiple functional systems throughout the degree.",
+      ],
+      technologies: ["Python", "C#", ".NET", "React", "SQL", "PostgreSQL"],
+    },
+  ],
+  es: [
+    {
+      id: "thesis-uclv",
+      company: "Universidad Central «Marta Abreu» de Las Villas",
+      role: "Trabajo de Diploma — Investigación en IA",
+      location: "Villa Clara, Cuba",
+      period: "2024 — Jul 2025",
+      description:
+        "Tesis de grado centrada en la detección y clasificación de comportamientos transgresivos en línea mediante modelos de inteligencia artificial.",
+      responsibilities: [
+        "Diseño y entrenamiento de modelos de aprendizaje automático y profundo para el análisis de contenido en sitios web.",
+        "Preprocesamiento de datos, extracción de características y evaluación de métricas del modelo.",
+        "Desarrollo de la aplicación que integra los modelos para detectar y clasificar comportamientos en tiempo real.",
+      ],
+      achievements: [
+        "Tesis expuesta y aprobada en julio de 2025.",
+        "Aplicación funcional end-to-end que combina IA y una interfaz de análisis.",
+      ],
+      technologies: ["Python", "Scikit-learn", "Deep Learning", "Streamlit"],
+    },
+    {
+      id: "cupet-networks",
+      company: "Comercializadora de CUPET",
+      role: "Técnico en Administración de Redes",
+      location: "Villa Clara, Cuba",
+      period: "Oct 2025 — May 2026",
+      description:
+        "Administración y mantenimiento de la infraestructura de red de la comercializadora.",
+      responsibilities: [
+        "Administración de redes: configuración, monitoreo y mantenimiento de la conectividad.",
+        "Resolución de incidencias y soporte técnico a usuarios.",
+        "Aseguramiento de la disponibilidad y estabilidad de los servicios de red.",
+      ],
+      achievements: [],
+      technologies: ["Administración de redes", "Soporte técnico"],
+    },
+    {
+      id: "practices-uclv",
+      company: "Universidad Central «Marta Abreu» de Las Villas",
+      role: "Proyectos de Práctica — Desarrollo de Software",
+      location: "Villa Clara, Cuba",
+      period: "2021 — 2025 (durante la carrera)",
+      description:
+        "Varios proyectos prácticos culminados en el desarrollo de software funcional, abarcando IA aplicada a la salud y sistemas de gestión.",
+      responsibilities: [
+        "«Diagnóstico de Esclerosis Múltiple»: aplicación de apoyo al diagnóstico basada en modelos de IA.",
+        "«Control de medios mobiliarios»: sistema de gestión de inventario de mobiliario.",
+        "«Control de material humano en enfermería»: sistema de gestión de personal de enfermería.",
+      ],
+      achievements: [
+        "Participación y mención en el Fórum Científico Universitario «52 Jornada Científico Estudiantil Universitaria».",
+        "Entrega de múltiples sistemas funcionales a lo largo de la carrera.",
+      ],
+      technologies: ["Python", "C#", ".NET", "React", "SQL", "PostgreSQL"],
+    },
+  ],
+};
+
+export function getExperiences(locale: Locale): Experience[] {
+  return content[locale];
+}

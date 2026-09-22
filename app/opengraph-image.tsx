@@ -1,5 +1,7 @@
 import { ImageResponse } from "next/og";
-import { profile } from "@/data/profile";
+import { getProfile } from "@/data/profile";
+
+const profile = getProfile("en");
 
 export const alt = `${profile.name} — ${profile.role}`;
 export const size = { width: 1200, height: 630 };

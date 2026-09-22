@@ -2,7 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { profile } from "@/data/profile";
+import { getProfile } from "@/data/profile";
+
+const profile = getProfile("en");
 
 /** Pantalla de carga inicial. */
 export function Loader() {

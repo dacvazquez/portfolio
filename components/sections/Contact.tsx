@@ -1,25 +1,32 @@
+"use client";
+
 import { Mail, MapPin, Phone } from "lucide-react";
 import { Section } from "./Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { Card } from "@/components/ui/card";
 import { ContactForm } from "./ContactForm";
-import { profile } from "@/data/profile";
-import { socials } from "@/data/socials";
+import { getProfile } from "@/data/profile";
+import { getSocials } from "@/data/socials";
+import { useLocale } from "@/lib/locale";
 
 export function Contact() {
+  const { locale, t } = useLocale();
+  const profile = getProfile(locale);
+  const socials = getSocials(locale);
+
   const contactDetails = [
-    { icon: Mail, label: "Email", value: profile.email, href: `mailto:${profile.email}` },
-    { icon: Phone, label: "Teléfono", value: profile.phone, href: `tel:${profile.phone.replace(/\s/g, "")}` },
-    { icon: MapPin, label: "Ubicación", value: profile.location },
+    { icon: Mail, label: t.contact.email, value: profile.email, href: `mailto:${profile.email}` },
+    { icon: Phone, label: t.contact.phone, value: profile.phone, href: `tel:${profile.phone.replace(/\s/g, "")}` },
+    { icon: MapPin, label: t.contact.location, value: profile.location },
   ];
 
   return (
     <Section id="contact">
       <SectionHeading
-        eyebrow="08"
-        title="Trabajemos juntos"
-        description="¿Tienes un proyecto en mente o una oportunidad? Escríbeme y te responderé lo antes posible."
+        eyebrow={t.sections.contact.eyebrow}
+        title={t.sections.contact.title}
+        description={t.sections.contact.description}
       />
 
       <div className="mt-12 grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">

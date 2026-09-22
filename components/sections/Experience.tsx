@@ -1,17 +1,23 @@
+"use client";
+
 import { Briefcase, CheckCircle2, Trophy } from "lucide-react";
 import { Section } from "./Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
 import { Badge } from "@/components/ui/badge";
-import { experiences } from "@/data/experience";
+import { getExperiences } from "@/data/experience";
+import { useLocale } from "@/lib/locale";
 
 export function Experience() {
+  const { locale, t } = useLocale();
+  const experiences = getExperiences(locale);
+
   return (
     <Section id="experience">
       <SectionHeading
-        eyebrow="02"
-        title="Experiencia"
-        description="Mi recorrido profesional y académico, de los proyectos más recientes a los primeros."
+        eyebrow={t.sections.experience.eyebrow}
+        title={t.sections.experience.title}
+        description={t.sections.experience.description}
       />
 
       <div className="mt-14">
