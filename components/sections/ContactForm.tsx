@@ -146,7 +146,8 @@ export function ContactForm() {
             </>
           ) : (
             <>
-              <Send className="h-4 w-4" /> {t.contact.send}
+              <Send className="h-4 w-4 transition-transform duration-300 group-hover/btn:-translate-y-0.5 group-hover/btn:translate-x-0.5" />{" "}
+              {t.contact.send}
             </>
           )}
         </Button>

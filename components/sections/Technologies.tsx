@@ -2,10 +2,15 @@
 
 import { Section } from "./Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
+import { Reveal } from "@/components/common/Reveal";
 import { TechCard } from "./TechCard";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { technologies } from "@/data/technologies";
 import { useLocale } from "@/lib/locale";
+import { cn } from "@/lib/utils";
+
+// Dos filas que se desplazan en sentidos opuestos.
+const half = Math.ceil(technologies.length / 2);
+const rows = [technologies.slice(0, half), technologies.slice(half)];
 
 export function Technologies() {
   const { t } = useLocale();
@@ -19,13 +24,33 @@ export function Technologies() {
         align="center"
       />
 
-      <TooltipProvider delayDuration={100}>
-        <div className="mx-auto mt-12 grid max-w-3xl grid-cols-4 gap-3 sm:grid-cols-6 md:gap-4">
-          {technologies.map((tech, index) => (
-            <TechCard key={tech.name} tech={tech} index={index} />
-          ))}
-        </div>
-      </TooltipProvider>
+      <Reveal className="mt-12 space-y-4">
+        {rows.map((row, rowIndex) => (
+          <div
+            key={rowIndex}
+            className="group flex overflow-hidden py-2 [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)] motion-reduce:[mask-image:none]"
+          >
+            {/* Dos copias seguidas para que el bucle no tenga cortes. */}
+            {[0, 1].map((copy) => (
+              <ul
+                key={copy}
+                aria-hidden={copy === 1 || undefined}
+                className={cn(
+                  "flex shrink-0 gap-4 pr-4 animate-marquee group-hover:[animation-play-state:paused] motion-reduce:w-full motion-reduce:shrink motion-reduce:flex-wrap motion-reduce:justify-center motion-reduce:pr-0",
+                  rowIndex === 1 && "[animation-direction:reverse] [animation-duration:45s]",
+                  copy === 1 && "motion-reduce:hidden"
+                )}
+              >
+                {row.map((tech) => (
+                  <li key={tech.name}>
+                    <TechCard tech={tech} />
+                  </li>
+                ))}
+              </ul>
+            ))}
+          </div>
+        ))}
+      </Reveal>
     </Section>
   );
 }

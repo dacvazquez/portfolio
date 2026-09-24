@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { SITE_CONFIG, SITE_URL } from "@/lib/constants";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
+import { MotionProvider } from "@/components/common/MotionProvider";
 import { LocaleProvider } from "@/lib/locale";
 import { getProfile } from "@/data/profile";
 
@@ -109,7 +110,9 @@ export default function RootLayout({
       </head>
       <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans`}>
         <LocaleProvider>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider>
+            <MotionProvider>{children}</MotionProvider>
+          </ThemeProvider>
         </LocaleProvider>
       </body>
     </html>

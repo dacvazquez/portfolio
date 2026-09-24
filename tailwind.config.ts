@@ -56,6 +56,9 @@ const config: Config = {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "monospace"],
       },
+      transitionTimingFunction: {
+        "out-expo": "cubic-bezier(0.22, 1, 0.36, 1)",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -76,12 +79,39 @@ const config: Config = {
           "0%, 100%": { transform: "translate(0px, 0px) scale(1)" },
           "50%": { transform: "translate(-20px, 20px) scale(1.05)" },
         },
+        "aurora-drift-alt": {
+          "0%, 100%": { transform: "translate(0px, 0px) scale(1)" },
+          "33%": { transform: "translate(40px, -30px) scale(1.1)" },
+          "66%": { transform: "translate(-30px, 20px) scale(0.95)" },
+        },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-100%)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-12px)" },
+        },
+        shine: {
+          "0%": { transform: "translateX(-100%)" },
+          "60%, 100%": { transform: "translateX(100%)" },
+        },
+        "gradient-x": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.5s ease-out forwards",
         "aurora-drift": "aurora-drift 18s ease-in-out infinite",
+        "aurora-drift-alt": "aurora-drift-alt 26s ease-in-out infinite",
+        marquee: "marquee 40s linear infinite",
+        float: "float 6s ease-in-out infinite",
+        shine: "shine 3s ease-in-out infinite",
+        "gradient-x": "gradient-x 6s ease infinite",
+        "spin-slow": "spin 24s linear infinite",
       },
     },
   },

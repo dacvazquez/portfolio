@@ -21,3 +21,8 @@ export function useMediaQuery(query: string) {
 export function usePrefersReducedMotion() {
   return useMediaQuery("(prefers-reduced-motion: reduce)");
 }
+
+/** Atajo: `true` en dispositivos con ratón (hover preciso). */
+export function useFinePointer() {
+  return useMediaQuery("(hover: hover) and (pointer: fine)");
+}

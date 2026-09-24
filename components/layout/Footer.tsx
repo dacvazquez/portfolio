@@ -13,13 +13,22 @@ export function Footer() {
   const year = 2026; // TODO: si prefieres año dinámico, usa new Date().getFullYear().
 
   return (
-    <footer className="border-t border-border/70">
-      <div className="container py-12">
+    <footer className="relative">
+      {/* Línea superior con degradado en movimiento */}
+      <div
+        aria-hidden
+        className="h-px w-full bg-gradient-to-r from-transparent via-primary to-transparent bg-[length:200%_100%] motion-safe:animate-gradient-x"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 top-0 mx-auto h-24 max-w-3xl bg-primary/10 blur-3xl"
+      />
+      <div className="container relative py-12">
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm space-y-3">
             <a
               href="#hero"
-              className="font-mono text-lg font-bold text-primary"
+              className="link-underline font-mono text-lg font-bold text-primary"
             >
               {profile.name}
             </a>
@@ -36,7 +45,7 @@ export function Footer() {
               <a
                 key={item.href}
                 href={item.href}
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className="link-underline w-fit text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 {item.label}
               </a>
@@ -57,7 +66,7 @@ export function Footer() {
                     target={social.href.startsWith("http") ? "_blank" : undefined}
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-muted-foreground transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:text-primary hover:shadow-[0_8px_24px_-8px_hsl(var(--primary)/0.6)]"
                   >
                     <Icon className="h-[18px] w-[18px]" />
                   </a>

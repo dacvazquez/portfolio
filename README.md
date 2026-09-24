@@ -6,7 +6,7 @@ Mi portafolio personal. Aquí reúno mi experiencia, mis proyectos y mi stack, j
 
 - Next.js 14 (App Router), React 18 y TypeScript
 - Tailwind CSS
-- Framer Motion para las animaciones
+- Framer Motion para las animaciones y Lenis para el scroll suave
 - Zod para validar el formulario y Resend para enviar los correos
 
 ## Cómo ejecutarlo
