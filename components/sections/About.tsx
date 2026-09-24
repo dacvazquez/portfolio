@@ -3,6 +3,7 @@
 import { Section } from "./Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
+import { trackSpotlight } from "@/components/common/SpotlightCard";
 import { getProfile } from "@/data/profile";
 import { useLocale } from "@/lib/locale";
 
@@ -30,16 +31,17 @@ export function About() {
         </div>
 
         <Reveal direction="left" className="h-fit">
-          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border">
+          <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-border bg-border shadow-[0_20px_60px_-30px_hsl(var(--primary)/0.4)]">
             {profile.highlights.map((highlight) => (
               <div
                 key={highlight.label}
-                className="bg-card p-5 transition-colors hover:bg-card/60"
+                onPointerMove={trackSpotlight}
+                className="spotlight group bg-card p-5"
               >
                 <dt className="text-xs font-medium uppercase tracking-wider text-muted-foreground/70">
                   {highlight.label}
                 </dt>
-                <dd className="mt-2 text-sm font-semibold text-foreground">
+                <dd className="mt-2 text-sm font-semibold text-foreground transition-colors duration-300 group-hover:text-primary">
                   {highlight.value}
                 </dd>
               </div>

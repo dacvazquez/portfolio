@@ -4,7 +4,7 @@ import { GraduationCap, Award, Sparkles } from "lucide-react";
 import { Section } from "./Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
-import { Card } from "@/components/ui/card";
+import { SpotlightCard } from "@/components/common/SpotlightCard";
 import { getEducation } from "@/data/education";
 import { getCertifications } from "@/data/certifications";
 import { useLocale } from "@/lib/locale";
@@ -27,9 +27,9 @@ export function Education() {
         <div className="space-y-6">
           {education.map((edu, index) => (
             <Reveal key={edu.id} delay={index * 0.08}>
-              <Card className="p-6">
+              <SpotlightCard className="group p-6">
                 <div className="flex items-start gap-4">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border bg-primary/10 text-primary">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border bg-primary/10 text-primary transition-all duration-300 group-hover:-rotate-6 group-hover:scale-110 group-hover:border-primary/50 group-hover:bg-primary/20">
                     <GraduationCap className="h-5 w-5" />
                   </span>
                   <div className="min-w-0">
@@ -62,7 +62,7 @@ export function Education() {
                     )}
                   </div>
                 </div>
-              </Card>
+              </SpotlightCard>
             </Reveal>
           ))}
         </div>
@@ -76,7 +76,7 @@ export function Education() {
             </h3>
             {certifications.map((cert, index) => (
               <Reveal key={cert.id} delay={index * 0.08}>
-                <Card className="flex items-center justify-between gap-4 p-5">
+                <SpotlightCard className="flex items-center justify-between gap-4 p-5">
                   <div>
                     <h4 className="text-sm font-semibold">{cert.title}</h4>
                     <p className="mt-0.5 text-xs text-muted-foreground">
@@ -93,7 +93,7 @@ export function Education() {
                       {t.education.view}
                     </a>
                   )}
-                </Card>
+                </SpotlightCard>
               </Reveal>
             ))}
           </div>

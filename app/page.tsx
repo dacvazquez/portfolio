@@ -4,6 +4,7 @@ import { ScrollProgress } from "@/components/common/ScrollProgress";
 import { BackToTop } from "@/components/common/BackToTop";
 import { AnimatedBackground } from "@/components/common/AnimatedBackground";
 import { Loader } from "@/components/common/Loader";
+import { SmoothScroll } from "@/components/common/SmoothScroll";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Experience } from "@/components/sections/Experience";
@@ -17,6 +18,7 @@ import { Contact } from "@/components/sections/Contact";
 export default function HomePage() {
   return (
     <>
+      <SmoothScroll />
       <Loader />
       <ScrollProgress />
       <AnimatedBackground />

@@ -16,7 +16,7 @@ interface RevealProps {
   duration?: number;
 }
 
-const offset = 24;
+const offset = 32;
 
 const directions: Record<Direction, { x: number; y: number }> = {
   up: { x: 0, y: offset },
@@ -26,12 +26,12 @@ const directions: Record<Direction, { x: number; y: number }> = {
   none: { x: 0, y: 0 },
 };
 
-/** Anima el contenido al entrar en pantalla. */
+/** Anima el contenido al entrar en pantalla (desplazamiento, desenfoque y escala). */
 export function Reveal({
   children,
   delay = 0,
   direction = "up",
-  duration = 0.5,
+  duration = 0.7,
   className,
 }: RevealProps) {
   const from = directions[direction];
@@ -39,8 +39,8 @@ export function Reveal({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, ...from }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      initial={{ opacity: 0, scale: 0.98, filter: "blur(6px)", ...from }}
+      whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, filter: "blur(0px)" }}
       viewport={{ once: true, margin: "0px 0px -80px 0px" }}
       transition={{ duration, delay, ease: [0.22, 1, 0.36, 1] }}
     >

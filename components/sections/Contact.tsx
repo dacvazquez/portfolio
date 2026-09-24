@@ -4,7 +4,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import { Section } from "./Section";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { Reveal } from "@/components/common/Reveal";
-import { Card } from "@/components/ui/card";
+import { SpotlightCard } from "@/components/common/SpotlightCard";
 import { ContactForm } from "./ContactForm";
 import { getProfile } from "@/data/profile";
 import { getSocials } from "@/data/socials";
@@ -36,8 +36,8 @@ export function Contact() {
             {contactDetails.map((detail) => {
               const Icon = detail.icon;
               const content = (
-                <div className="flex items-center gap-4">
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border bg-primary/10 text-primary">
+                <div className="group flex items-center gap-4">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-border bg-primary/10 text-primary transition-all duration-300 group-hover:-rotate-6 group-hover:scale-110 group-hover:border-primary/50 group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-[0_0_24px_-4px_hsl(var(--primary)/0.7)]">
                     <Icon className="h-5 w-5" />
                   </span>
                   <div>
@@ -54,7 +54,7 @@ export function Contact() {
                 <a
                   key={detail.label}
                   href={detail.href}
-                  className="block rounded-lg transition-opacity hover:opacity-80"
+                  className="block w-fit rounded-lg"
                 >
                   {content}
                 </a>
@@ -74,7 +74,7 @@ export function Contact() {
                   target={social.href.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-border text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-md border border-border text-muted-foreground transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:text-primary hover:shadow-[0_8px_24px_-8px_hsl(var(--primary)/0.6)]"
                 >
                   <Icon className="h-5 w-5" />
                 </a>
@@ -85,9 +85,9 @@ export function Contact() {
 
         {/* Formulario */}
         <Reveal direction="left">
-          <Card className="p-6 sm:p-8">
+          <SpotlightCard className="p-6 sm:p-8">
             <ContactForm />
-          </Card>
+          </SpotlightCard>
         </Reveal>
       </div>
     </Section>

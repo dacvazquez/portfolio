@@ -7,6 +7,7 @@ import { getNavItems } from "@/data/navigation";
 import { getProfile } from "@/data/profile";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { useLocale } from "@/lib/locale";
+import { useIntroComplete } from "@/lib/intro";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/ThemeToggle";
@@ -20,6 +21,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const sectionIds = navItems.map((item) => item.href.replace("#", ""));
   const activeId = useActiveSection(sectionIds);
+  const introDone = useIntroComplete();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16);
@@ -42,16 +44,20 @@ export function Navbar() {
     .join("");
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled
-          ? "border-b border-border/70 bg-background/70 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
-      )}
+    <motion.header
+      initial={{ y: -96, opacity: 0 }}
+      animate={introDone ? { y: 0, opacity: 1 } : undefined}
+      transition={{ duration: 0.8, delay: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed inset-x-0 top-0 z-50"
     >
+      {/* Al hacer scroll, la barra se convierte en una "isla" flotante. */}
       <nav
-        className="container flex h-16 items-center justify-between"
+        className={cn(
+          "mx-auto flex items-center justify-between border transition-all duration-500 ease-out-expo",
+          scrolled
+            ? "mt-3 h-14 w-[calc(100%-1.5rem)] max-w-6xl rounded-2xl border-border/70 bg-background/70 px-4 shadow-[0_8px_32px_-12px_hsl(var(--primary)/0.25)] backdrop-blur-xl sm:px-5"
+            : "mt-0 h-16 w-full max-w-[1200px] rounded-none border-transparent bg-transparent px-6"
+        )}
         aria-label={t.nav.mainNav}
       >
         <a
@@ -59,7 +65,7 @@ export function Navbar() {
           className="group inline-flex items-center gap-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           aria-label={t.nav.goHome}
         >
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-primary/40 bg-primary/10 font-mono text-sm font-bold text-primary transition-colors group-hover:bg-primary/20">
+          <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-primary/40 bg-primary/10 font-mono text-sm font-bold text-primary transition-all duration-300 group-hover:rotate-[-8deg] group-hover:scale-110 group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_-2px_hsl(var(--primary)/0.6)]">
             {initials}
           </span>
           <span className="hidden text-sm font-semibold tracking-tight sm:inline">
@@ -80,7 +86,7 @@ export function Navbar() {
                 <a
                   href={item.href}
                   className={cn(
-                    "relative rounded-md px-3 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                    "relative isolate rounded-full px-3 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                     isActive
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"
@@ -90,7 +96,7 @@ export function Navbar() {
                   {isActive && (
                     <motion.span
                       layoutId="nav-active"
-                      className="absolute inset-x-2 -bottom-px h-px bg-primary"
+                      className="absolute inset-0 -z-10 rounded-full bg-primary/10 ring-1 ring-inset ring-primary/30"
                       transition={{ type: "spring", stiffness: 380, damping: 30 }}
                     />
                   )}
@@ -130,15 +136,29 @@ export function Navbar() {
         {open && (
           <motion.div
             id="mobile-menu"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
-            className="overflow-hidden border-b border-border bg-background/95 backdrop-blur-xl md:hidden"
+            initial={{ opacity: 0, height: 0, y: -8 }}
+            animate={{ opacity: 1, height: "auto", y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -8 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="mx-3 mt-2 overflow-hidden rounded-2xl border border-border bg-background/95 shadow-xl backdrop-blur-xl md:hidden"
           >
-            <ul className="container flex flex-col gap-1 py-4">
+            <motion.ul
+              className="flex flex-col gap-1 p-3"
+              initial="hidden"
+              animate="show"
+              variants={{
+                hidden: {},
+                show: { transition: { staggerChildren: 0.04, delayChildren: 0.08 } },
+              }}
+            >
               {navItems.map((item) => (
-                <li key={item.href}>
+                <motion.li
+                  key={item.href}
+                  variants={{
+                    hidden: { opacity: 0, x: -16 },
+                    show: { opacity: 1, x: 0 },
+                  }}
+                >
                   <a
                     href={item.href}
                     onClick={() => setOpen(false)}
@@ -146,19 +166,25 @@ export function Navbar() {
                   >
                     {item.label}
                   </a>
-                </li>
+                </motion.li>
               ))}
-              <li className="pt-2">
+              <motion.li
+                className="pt-2"
+                variants={{
+                  hidden: { opacity: 0, y: 8 },
+                  show: { opacity: 1, y: 0 },
+                }}
+              >
                 <Button asChild className="w-full">
                   <a href="#contact" onClick={() => setOpen(false)}>
                     {t.nav.contactMe}
                   </a>
                 </Button>
-              </li>
-            </ul>
+              </motion.li>
+            </motion.ul>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 }
