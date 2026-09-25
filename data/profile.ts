@@ -6,11 +6,11 @@ const content: Record<Locale, Profile> = {
     role: "Software Developer",
     tagline: "Applied AI and full-stack web development",
     heroDescription:
-      "Computer Science graduate specialized in building AI-driven solutions and modern web applications, with a focus on detail, performance and code quality.",
+      "Computer Science graduate specialized in building AI-driven solutions and modern web applications, with a detail-oriented focus on performance and code quality.",
     about: [
-      "I'm Daniel Capote Vázquez, a Computer Science graduate from Universidad Central «Marta Abreu» de Las Villas. I move comfortably between full-stack web development and artificial intelligence, and I enjoy turning complex problems into clear, usable products.",
+      "I'm Daniel Capote Vázquez, a Computer Science graduate from Universidad Central «Marta Abreu» de Las Villas in Cuba. I move comfortably between full-stack web development and artificial intelligence, and I enjoy turning complex problems into clear, usable products.",
       "During my degree I carried several projects end to end: from machine learning models for medical diagnosis and online behavior detection, to complete management applications. My thesis focused on detecting and classifying transgressive behavior on the web using AI models.",
-      "I learn fast and like doing things right: clean code, good practices and a polished user experience. I'm looking to keep growing on teams where technical quality and real impact matter.",
+      "I'm a fast learner and like doing things right: clean code, good practices and a polished user experience. I'm looking to keep growing on teams where technical quality and real impact matter.",
     ],
     location: "A Coruña, Spain",
     email: "daniel.capote2002@gmail.com",
@@ -29,9 +29,9 @@ const content: Record<Locale, Profile> = {
     role: "Desarrollador de Software",
     tagline: "IA aplicada y desarrollo web full-stack",
     heroDescription:
-      "Licenciado en Ciencias de la Computación especializado en construir soluciones basadas en inteligencia artificial y aplicaciones web modernas, con foco en el detalle, el rendimiento y la calidad del código.",
+      "Licenciado en Ciencias de la Computación especializado en construir soluciones basadas en inteligencia artificial y aplicaciones web modernas, con especial atención al detalle, el rendimiento y la calidad del código.",
     about: [
-      "Soy Daniel Capote Vázquez, Licenciado en Ciencias de la Computación por la Universidad Central «Marta Abreu» de Las Villas. Me muevo con soltura entre el desarrollo web full-stack y la inteligencia artificial, y disfruto convirtiendo problemas complejos en productos claros y usables.",
+      "Soy Daniel Capote Vázquez, Licenciado en Ciencias de la Computación por la Universidad Central «Marta Abreu» de Las Villas en Cuba. Me muevo con soltura entre el desarrollo web full-stack y la inteligencia artificial, y disfruto convirtiendo problemas complejos en productos claros y usables.",
       "Durante la carrera llevé varios proyectos de principio a fin: desde modelos de machine learning para diagnóstico médico y detección de comportamientos en línea, hasta aplicaciones de gestión completas. Mi tesis se centró en la detección y clasificación de comportamientos transgresivos en la web mediante modelos de IA.",
       "Aprendo rápido y me gusta hacer las cosas bien: código limpio, buenas prácticas y una experiencia de usuario cuidada. Busco seguir creciendo en equipos donde la calidad técnica y el impacto real importen.",
     ],
